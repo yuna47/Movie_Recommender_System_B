@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movie_details_style.css') }}">
+    <!-- jQuery 먼저 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- 부트스트랩 CSS 링크 추가 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- 부트스트랩 JS 로드 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="modal-header bg-dark text-white">
+        <h4 class="modal-title">영화 정보</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body bg-dark text-white">
+        <img src="{{ movie.img }}" alt="{{ movie.title }} 이미지" style="max-width: 100%;">
+        <p>제목: {{ movie.title }}</p>
+        <p>장르: {{ movie.genre }}</p>
+        <p>감독: {{ movie.director }}</p>
+        <p>배우: {{ movie.actor }}</p>
+        <p>시놉시스: {{ movie.synopsis }}</p>
+    </div>
+
+    <div class="modal-footer bg-dark text-white">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!-- templates/allMovie.html -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>allMovie Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/allMovie_style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 id="mainLink">MovieFlix</h1>
+        <h1 id="allMovie">모든 영화</h1>
+        <input type="text" placeholder="Search...">
+        <button id="logoutButton">Logout</button>
+    </div>
+
+    <div class="movie-posters">
+        {% for movie in movies %}
+        <div class="movie-poster" data-movie-id="{{ movie.id }}">
+            <img src="{{ movie.img }}" alt="{{ movie.id }} 이미지">
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="modal" id="movieDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+            </div>
+
+            <div class="modal-body" id="modal-content">
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('mainLink').addEventListener('click', function () {
+            window.location.href = "{{ url_for('main') }}";
+        });
+
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            window.location.href = "{{ url_for('start') }}";
+        });
+
+        function openModalWithUrl(url) {
+            // Ajax를 사용하여 서버에서 콘텐츠 정보를 가져오기
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (response) {
+                    // 가져온 정보를 모달에 표시
+                    document.getElementById('modal-content').innerHTML = response;
+                    // 모달 열기
+                    $('#movieDetailModal').modal('show');
+
+                    // URL 업데이트
+                    window.history.pushState({ path: url }, '', url);
+                },
+                error: function (error) {
+                    console.error('Error fetching movie details:', error);
+                }
+            });
+        }
+
+        document.querySelectorAll('.movie-poster').forEach(function (poster) {
+            poster.addEventListener('click', function () {
+                var movieId = this.getAttribute('data-movie-id');
+                var modalUrl = "/allMovie/" + movieId;
+
+                // 모달 열기 및 URL 업데이트
+                openModalWithUrl(modalUrl);
+            });
+        });
+
+        $('#movieDetailModal').on('show.bs.modal', function () {
+        // 모달 열 때 모달을 제외한 부분만 어둡게 만들기
+        $('.movie-posters, .header').addClass('dark-overlay');
+        });
+
+        $('#movieDetailModal').on('hidden.bs.modal', function () {
+            // 모달 닫을 때 어둡게 만든 효과 제거
+            $('.movie-posters, .header').removeClass('dark-overlay');
+            document.getElementById('modal-content').innerHTML = "";
+
+            // URL 원복 (새로고침 없이)
+            var originalUrl = "{{ url_for('allMovie') }}";
+            window.history.pushState({ path: originalUrl }, '', originalUrl);
+        });
+
+        $(document).on('click', function (e) {
+            if ($(e.target).closest('#movieDetailModal').length === 0) {
+                // 모달 외의 영역을 클릭하면 모달 닫기
+                $('#movieDetailModal').modal('hide');
+            }
+        });
+        </script>
+    </body>
+</html>

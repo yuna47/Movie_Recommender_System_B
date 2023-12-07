@@ -1,0 +1,22 @@
+/* 모달창 스타일 */
+#movieDetailModal {
+    display: none;
+    position: fixed;
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    z-index: 1000;
+    color: #b62828;
+}
+
+#movieDetailModal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#movieDetailModal p {
+    margin: 10px 0;
+    font-size: 18px;
+}

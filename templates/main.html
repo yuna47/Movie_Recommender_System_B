@@ -1,0 +1,51 @@
+<!-- templates/main.html -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>MovieFlix</h1>
+        <h1 id="allMovie">모든 영화</h1>
+        <input type="text" placeholder="Search...">
+        <button id="logoutButton" >Logout</button>
+    </div>
+    <div class="welcome">
+        <h1>{{username}}님의 취향저격 베스트 콘텐츠</h1>
+        <p>Welcome to the main page!</p>
+    </div>
+
+    <div class="movie-posters">
+        {% for movie in movies %}
+            <div class="movie-poster">
+                <img src="{{ movie['ResizedImg'] }}" alt="{{ movie['ID'] }} 이미지">
+            </div>
+        {% endfor %}
+    </div>
+
+        <script>
+            document.getElementById('allMovie').addEventListener('click', function() {
+                window.location.href = "{{ url_for('allMovie') }}";
+            });
+
+            // 버튼 클릭 이벤트 처리
+            document.getElementById('logoutButton').addEventListener('click', function() {
+                window.location.href = "{{ url_for('start') }}";
+            });
+
+            // 영화 포스터 클릭 이벤트 처리
+            document.querySelectorAll('.movie-poster').forEach(function(poster) {
+                poster.addEventListener('click', function() {
+                    var movieId = this.getAttribute('data_movie_id');
+                    showMovieDetails(movieId);
+                });
+            });
+        </script>
+</body>
+</html>

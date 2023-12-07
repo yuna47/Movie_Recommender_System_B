@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh; /* 뷰포트 높이의 100% */
+    margin: 0; /* body의 기본 마진 제거 */
+    background-color: #000000;
+    color: #ffffff;
+}
+
+input[type ="submit"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.center-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 정렬 */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+h1{
+    font-size: 150px;
+}
+
+
+
+.header title {
+    text-align: center
+    /*position: flex;*/
+    color: #ff0000;
+}
+
+#loginButton, #signUpButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: flex;
+    width: 150px;
+}
+
+#loginButton:hover,#signUpButton:hover {
+    background-color: #45a049;
+}

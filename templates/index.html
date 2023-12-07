@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Information</title>
+</head>
+<body>
+    <h1>Movies Information</h1>
+    {% for movie in movies %}
+        <div class="movie">
+            <p><strong>제목:</strong> {{ movie['Title'] }}</p>
+            <p><strong>장르:</strong> {{ movie['Genre'] }}</p>
+            <p><strong>감독:</strong> {{ movie['Director'] }}</p>
+            <p><strong>배우:</strong> {{ movie['Actor'] }}</p>
+            <p><strong>시놉시스:</strong> {{ movie['Synopsis'] }}</p>
+            <img src="{{ movie['Img'] }}" alt="{{ movie['Title'] }} 이미지">
+        </div>
+    {% endfor %}
+</body>
+</html>

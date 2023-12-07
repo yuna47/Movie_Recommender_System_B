@@ -1,0 +1,103 @@
+/* static/css/movieDetails_style.css */
+.header {
+    background-color: #333;
+    color: #fff;
+    cursor: default;
+    padding: 10px;
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 정렬 */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+
+#allMovie {
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+
+#logoutButton,#homeButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    /*position: absolute;
+    top: 10px;
+    right: 10px;*/
+}
+
+#logoutButton:hover {
+    background-color: #45a049;
+}
+
+
+body {
+    font-family: 'Arial', 'sans-serif';
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    max-height: 100vh;
+    overflow:hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow:hidden;
+
+}
+
+/* 기본 스타일 */
+.red-rounded-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 30px;
+    width: 250px;
+    height: 90px;
+    font-weight: bold;
+}
+
+/* 배경색 및 효과 */
+.red-rounded-button {
+  background-color: #ff0000; /* 빨간색 */
+  transition: background-color 0.3s ease;
+}
+
+.red-rounded-button:hover {
+  background-color: #cc0000; /* 호버 시 어두운 빨간색 */
+}
+
+.section1{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+}

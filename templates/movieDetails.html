@@ -1,0 +1,75 @@
+<!-- templates/movieDetails.html -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movieDetails_style.css') }}">
+</head>
+
+<body>
+    <div class="header">
+            <h1 id="mainLink">MovieFlix</h1>
+            <h1 id="allMovie">모든 영화</h1>
+            <input type="text" placeholder="Search...">
+            <button id="logoutButton" >Logout</button>
+
+        </div>
+    <div class="container">
+        <div class="movie-details">
+            <div class="movie-posters">
+                {% for movie in movies %}
+                    <div class="movie">
+        <!--                <p><strong>제목:</strong> {{ movie['Title'] }}</p>-->
+        <!--                <p><strong>장르:</strong> {{ movie['Genre'] }}</p>-->
+        <!--                <p><strong>감독:</strong> {{ movie['Director'] }}</p>-->
+        <!--                <p><strong>배우:</strong> {{ movie['Actor'] }}</p>-->
+        <!--                <p><strong>시놉시스:</strong> {{ movie['Synopsis'] }}</p>-->
+                        <img src="{{ movie['Img'] }}" alt="{{ movie['Title'] }} 이미지">
+                    </div>
+                {% endfor %}
+            </div>
+            <img src="" alt="Movie Poster" id="moviePoster">
+            <div class="details">
+                <h2 id="movieTitle"></h2>
+                <p id="movieDescription"></p>
+                <button id="backButton">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Back 버튼 클릭 이벤트 처리
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.history.back();
+        });
+
+        // 페이지 로드 시 영화 정보 채우기
+        window.onload = function () {
+            var movieId = "{{ movie_id }}";  // Flask에서 넘어온 변수 사용
+            fillMovieDetails(movieId);
+        };
+
+        // 영화 정보를 채우는 함수
+        function fillMovieDetails(movieId) {
+            // 여기에 서버에서 영화 정보를 가져오는 로직을 추가할 수 있습니다.
+            // 예시 데이터 사용
+            var movieDetails = {
+                title: "Movie Title " + movieId,
+                posterUrl: "https://example.com/poster" + movieId + ".jpg",
+                description: "Movie Description " + movieId
+            };
+
+            // HTML 엘리먼트에 정보 채우기
+            document.getElementById('movieTitle').innerText = movieDetails.title;
+            document.getElementById('moviePoster').src = movieDetails.posterUrl;
+            document.getElementById('movieDescription').innerText = movieDetails.description;
+        }
+    </script>
+
+</body>
+
+</html>
